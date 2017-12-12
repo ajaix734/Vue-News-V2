@@ -9,10 +9,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-HTTP Requests are made with vue-resource
+HTTP Requests are made with vue-resource.
 
 ```
 npm install --save vue-resource
+```
+Other Dependencies
+
+```
+npm install --save nprogress lodash
 ```
 
 ### Installing
