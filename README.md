@@ -1,21 +1,36 @@
-# vuenews
+# Vue News 
 
-> A Vue.js project
+Application [Demo](https://ajaix734.github.io/)
+Simple News Portal built with [News API](https://newsapi.org/).
 
-## Build Setup
+## Getting Started
 
-``` bash
-# install dependencies
-npm install
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-# serve with hot reload at localhost:8080
-npm run dev
+### Prerequisites
 
-# build for production with minification
-npm run build
+HTTP Requests are made with vue-resource
 
-# build for production and view the bundle analyzer report
-npm run build --report
+```
+npm install --save vue-resource
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Other Dependencies
+
+```
+npm install --save lodash
+```
+
+### Installing
+
+
+```
+git clone https://github.com/ajaix734/Vue-News.git
+cd Vue-News
+npm install
+npm run dev
+```
+## Built With
+
+* [Vue Js](https://vuejs.org/)
+* [VuetifyJS](https://vuetifyjs.com/)
