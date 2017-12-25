@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid v-cloak>
+    <v-container fluid fill-height v-cloak>
         <v-layout row wrap>
             <v-flex xs12 v-if="categoryShow" v-cloak>
                 <span>
@@ -12,25 +12,36 @@
                     </h1>
                 </span>
             </v-flex>
-            <v-flex xs12 sm8 md8 lg8 offset-sm2 offset-md2 offset-lg2 v-for="article in articles" :key="article.publishedAt">
-                <v-card class="mb-2" hover>
-                    <v-container fluname fill-heigt>
+            <v-flex xs12 sm12 md8 lg8 offset-md2 offset-lg2 v-for="(article,index) in articles" :key="index" shrink>
+                <v-card elevation-0>
+                    <v-container fluid fill-height>
                         <v-layout row wrap fill-height>
-                            <v-flex xs12 sm12 md4 lg4>
+                            <v-flex md4 lg4>
                                 <a :href="article.url " target="_blank " style="text-decoration: none ">
-                                    <v-card-media :src="article.urlToImage" style="height : 200px ; display : bock ; margin-left : auto ; margin-right : auto">
+                                    <!-- style="height : 200px ; width :200px ; display : block ; margin-left : auto ; margin-right : auto" -->
+                                    <v-card-media :src="article.urlToImage" style="height : 100%" class="mr-2">
                                     </v-card-media>
+                                    <!-- <v-avatar tile size="256px">
+                                        <img :src="article.urlToImage" alt="Article Image">
+                                    </v-avatar> -->
                                 </a>
                             </v-flex>
-                            <v-flex md8 lg8>
-                                <v-card-title primary-title class="pt-1 ml-2 d-flex">
-                                    <div>
-                                        <a :href="article.url " target="_blank " style="text-decoration: none ">
-                                            <h3 class="headline">{{article.title}}</h3>
-                                        </a>
-                                        <div class="d-inline-flex">{{article.description}}<br><br><br>{{article.publishedAt | dateFilter}} hour(s) ago...</div>
-                                    </div>
-                                </v-card-title>
+                            <v-flex xs12 sm12 md8 lg8>
+                                <!-- <v-card-title primary-title class="pt-1 ml-2 d-flex"> -->
+                                <!-- <div> -->
+                                <a :href="article.url " target="_blank " style="text-decoration: none ">
+                                    <h3 class="subheading">{{article.title}}</h3>
+                                </a>
+                                <br class="hidden-xs-only">
+                                <div class="d-inline-flex hidden-xs-only" style="text-overflow : ellipsis">{{article.description | textFilter}}
+                                    <!-- <br><br><br>{{article.publishedAt | dateFilter}} hour(s) ago... -->
+                                </div>
+                                <!-- <v-layout row wrap> -->
+                                <v-flex xs12 sm12 md12 lg6  offset-lg6 class="mt-4" style="font-weight : 400">
+                                    <v-icon>remove</v-icon>{{article.source.name}} - {{article.publishedAt | dateFilter}} hour(s) ago</v-flex>
+                                <!-- </v-layout> -->
+                                <!-- </div> -->
+                                <!-- </v-card-title> -->
                             </v-flex>
                             <!-- <v-spacer></v-spacer>
                             <v-flex sm1 md1 lg1>
@@ -43,6 +54,7 @@
                             </v-flex> -->
                         </v-layout>
                     </v-container>
+                    <v-divider v-if="index + 1 < articles.length" class="grey lighten-1"></v-divider>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -173,6 +185,20 @@ export default {
             else {
                 return d.getUTCHours()
             }
+        },
+        textFilter(text) {
+            if (text != null) {
+                if (text.length > 150) {
+                    text = text.slice(0, 150)
+                    text = text.concat('...')
+                    return text
+                }
+                else {
+                    return text
+                }
+            } else {
+                return text
+            }
         }
     }
 }
@@ -192,6 +218,9 @@ export default {
 
   width: 100%;
   height: 2px;
+}
+.container {
+  max-width: 1200px;
 }
 </style>
 

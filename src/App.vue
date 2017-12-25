@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-navigation-drawer fixed clipped app v-model="drawer" temporary style="height : 100% , width : 250">
+        <v-navigation-drawer fixed clipped app v-model="drawer" temporary>
             <v-list dense class="pt-0">
                 <v-list-tile v-for="item in items" :key="item.title" @click="changeCategory(item.id)" @click.stop="drawer = !drawer">
                     <v-list-tile-action>
@@ -33,10 +33,10 @@
                         </v-list>
                     </v-menu>
                 </v-toolbar-title>
-                <v-text-field light solo prepend-icon="search" class="hidden-xs-only" placeholder="Search" style="max-width: 150px; min-width: 100px" v-model="temp" @keypress.enter="changeSearch(temp)"></v-text-field>
+                <v-text-field light solo  class="hidden-xs-only" placeholder="Search" style="max-width: 150px; min-width: 100px" v-model="temp"  @keypress.enter="changeSearch(temp)"></v-text-field>
                 <!-- <v-icon dark>search</v-icon> -->
-                <v-text-field class="hidden-sm-and-up" name="input1" id="testing" append-icon="search" style="max-width : 100px" v-model="temp" @keypress.enter="changeSearch(temp)"></v-text-field>
-                </v-btn>
+                <v-text-field class="hidden-sm-and-up" placeholder="Search" name="input1" id="testing"  style="max-width : 100px" v-model="temp"  @keypress.enter="changeSearch(temp)"></v-text-field>
+                <!-- </v-btn> -->
             </div>
         </v-toolbar>
         <v-content>
@@ -45,7 +45,9 @@
                 <v-layout row wrap>
                     <keep-alive>
                         <div v-cloak>
-                            <component :is="currentView" :sendprop="id" :search="searchText"></component>
+                            <transition name="fade" mode="out-in">
+                                <component :is="currentView" :sendprop="id" :search="searchText"></component>
+                            </transition>
                         </div>
                     </keep-alive>
                 </v-layout>
@@ -184,5 +186,17 @@ export default {
 <style>
 [v-cloak] {
   display: none;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave {
+  opacity: 0;
 }
 </style>

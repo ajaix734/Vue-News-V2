@@ -6,11 +6,7 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.css'
 import _ from 'lodash'
 import App from './App'
-import Parallax from 'vue-parallaxy'
-// import router from './router'
-// import store from './store/store.js'
 
-// export const bus = new Vue()
 
 Vue.use(Vuetify, {
   theme: {
@@ -33,5 +29,5 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App, Parallax }
+  components: { App }
 })
